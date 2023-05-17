@@ -7,15 +7,15 @@ import jakarta.persistence.*;
 public class AvailabilityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "availability_id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "table_id")
-    private int table_id;
+    @Column(name = "tableId")
+    private int tableId;
 
-    @Column(name = "time_slot")
+    @Column(name = "timeSlot")
     private String timeSlot;
 
-    @Column(name = "is_available")
+    @Column(name = "isAvailable")
     private boolean isAvailable;
 }
