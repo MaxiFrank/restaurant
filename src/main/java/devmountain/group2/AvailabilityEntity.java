@@ -10,12 +10,44 @@ public class AvailabilityEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "tableId")
+    @Column(name = "table_id")
     private int tableId;
 
-    @Column(name = "timeSlot")
+    @Column(name = "time_slot")
     private String timeSlot;
 
-    @Column(name = "isAvailable")
+    @Column(name = "is_available")
     private boolean isAvailable;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(int tableId) {
+        this.tableId = tableId;
+    }
+
+    public String getTimeSlot() {
+        return timeSlot;
+    }
+
+    public void setTimeSlot(String timeSlot) {
+        this.timeSlot = timeSlot;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
 }
