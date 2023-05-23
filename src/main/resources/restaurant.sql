@@ -1,12 +1,13 @@
 DROP TABLE IF EXISTS availability;
 
 CREATE TABLE availability (
-    tableId VARCHAR (50) NOT NULL,
-    timeSlot VARCHAR (50) NOT NULL,
-	isAvailable boolean NOT NULL
+    id SERIAL PRIMARY KEY,
+    table_id VARCHAR (50) NOT NULL,
+    time_slot VARCHAR (50) NOT NULL,
+	is_available boolean NOT NULL
 );
 
-INSERT INTO availability (tableId, timeSlot, isAvailable) VALUES
+INSERT INTO availability (table_id, time_slot, is_available) VALUES
 ('1', '11-12', 't'),
 ('1', '12-13', 't'),
 ('1', '13-14', 't'),
@@ -46,12 +47,13 @@ INSERT INTO availability (tableId, timeSlot, isAvailable) VALUES
 DROP TABLE IF EXISTS menu;
 
 CREATE TABLE menu (
-    dishName VARCHAR (50) NOT NULL,
+    id SERIAL PRIMARY KEY,
+    dish_name VARCHAR (50) NOT NULL,
 	description VARCHAR (255) NOT NULL,
 	price decimal NOT NULL
 	);
 
-INSERT INTO menu (dishName, description, price) VALUES
+INSERT INTO menu (dish_name, description, price) VALUES
 ('ANTIPASTO MISTO', 'Grilled Eggplant, Zucchini, Salumi, Olives, Fior di Latte Mozzarella', 24.0),
 ('SUPPLI NAPOLETANA' , 'Fried Arborio Risotto Balls (3), Stuffed w/ Mozzarella, Served w/ Garlic-Aioli', 14.0),
 ('BURATA', 'Handmade Mozzarella w/ Marinated Olives, Greens, Frontoia Sicilian EVOO', 14.0),
