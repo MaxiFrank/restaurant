@@ -1,4 +1,4 @@
-package devmountain.group2;
+package devmountain.group2.entities;
 
 import jakarta.persistence.*;
 
