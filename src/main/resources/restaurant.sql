@@ -3,57 +3,66 @@ DROP TABLE IF EXISTS availability;
 CREATE TABLE availability (
     id SERIAL PRIMARY KEY,
     table_id VARCHAR (50) NOT NULL,
-    time_slot VARCHAR (50) NOT NULL,
-	is_available boolean NOT NULL
+    capacity INT NOT NULL,
+    time_slot VARCHAR (50) NOT NULL
 );
 
-INSERT INTO availability (table_id, time_slot, is_available) VALUES
-('1', '11-12', 't'),
-('1', '12-13', 't'),
-('1', '13-14', 't'),
-('1', '17-18', 't'),
-('1', '18-19', 't'),
-('1', '19-20', 't'),
-('1', '20-21', 't'),
-('2', '11-12', 't'),
-('2', '12-13', 't'),
-('2', '13-14', 't'),
-('2', '17-18', 't'),
-('2', '18-19', 't'),
-('2', '19-20', 't'),
-('2', '20-21', 't'),
-('3', '11-12', 't'),
-('3', '12-13', 't'),
-('3', '13-14', 't'),
-('3', '17-18', 't'),
-('3', '18-19', 't'),
-('3', '19-20', 't'),
-('3', '20-21', 't'),
-('4', '11-12', 't'),
-('4', '12-13', 't'),
-('4', '13-14', 't'),
-('4', '17-18', 't'),
-('4', '18-19', 't'),
-('4', '19-20', 't'),
-('4', '20-21', 't'),
-('5', '11-12', 't'),
-('5', '12-13', 't'),
-('5', '13-14', 't'),
-('5', '17-18', 't'),
-('5', '18-19', 't'),
-('5', '19-20', 't'),
-('5', '20-21', 't');
+INSERT INTO availability (table_id, capacity, time_slot) VALUES
+    ('1', '2', '11-12'),
+    ('1', '2', '12-13'),
+    ('1', '2', '13-14'),
+    ('1', '2', '17-18'),
+    ('1', '2', '18-19'),
+    ('1', '2', '19-20'),
+    ('1', '2', '20-21'),
+    ('2', '2', '11-12'),
+    ('2', '2', '12-13'),
+    ('2', '2', '13-14'),
+    ('2', '2', '17-18'),
+    ('2', '2', '18-19'),
+    ('2', '2', '19-20'),
+    ('2', '2', '20-21'),
+    ('3', '4', '11-12'),
+    ('3', '4', '12-13'),
+    ('3', '4', '13-14'),
+    ('3', '4', '17-18'),
+    ('3', '4', '18-19'),
+    ('3', '4', '19-20'),
+    ('3', '4', '20-21'),
+    ('4', '4', '11-12'),
+    ('4', '4', '12-13'),
+    ('4', '4', '13-14'),
+    ('4', '4', '17-18'),
+    ('4', '4', '18-19'),
+    ('4', '4', '19-20'),
+    ('4', '4', '20-21'),
+    ('5', '6', '11-12'),
+    ('5', '6', '12-13'),
+    ('5', '6', '13-14'),
+    ('5', '6', '17-18'),
+    ('5', '6', '18-19'),
+    ('5', '6', '19-20'),
+    ('5', '6', '20-21');
 
-DROP TABLE IF EXISTS menu;
+DROP TABLE IF EXISTS reservations;
 
-CREATE TABLE menu (
+CREATE TABLE reservations (
     id SERIAL PRIMARY KEY,
-    dish_name VARCHAR (50) NOT NULL,
+    availability_id INT NOT NULL,
+    user_id INT NOT NULL,
+    timestamp TIMESTAMP NOT NULL,
+);
+
+DROP TABLE IF EXISTS dishes;
+
+CREATE TABLE dishes (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR (50) NOT NULL,
 	description VARCHAR (255) NOT NULL,
 	price decimal NOT NULL
-	);
+);
 
-INSERT INTO menu (dish_name, description, price) VALUES
+INSERT INTO dishes (name, description, price) VALUES
 ('ANTIPASTO MISTO', 'Grilled Eggplant, Zucchini, Salumi, Olives, Fior di Latte Mozzarella', 24.0),
 ('SUPPLI NAPOLETANA' , 'Fried Arborio Risotto Balls (3), Stuffed w/ Mozzarella, Served w/ Garlic-Aioli', 14.0),
 ('BURATA', 'Handmade Mozzarella w/ Marinated Olives, Greens, Frontoia Sicilian EVOO', 14.0),

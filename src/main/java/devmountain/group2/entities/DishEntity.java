@@ -3,15 +3,15 @@ package devmountain.group2.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "menu")
-public class MenuEntity {
+@Table(name = "dishes")
+public class DishEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "dish_name")
-    private String dishName;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "description")
     private String description;
@@ -27,12 +27,12 @@ public class MenuEntity {
         this.id = id;
     }
 
-    public String getDishName() {
-        return dishName;
+    public String getName() {
+        return name;
     }
 
-    public void setDishName(String dishName) {
-        this.dishName = dishName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

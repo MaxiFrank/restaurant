@@ -14,10 +14,10 @@ public class RatingController {
     @Autowired
     private RatingServiceImpl ratingService;
 
-    @PostMapping(path = "/CreateMealRating", consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "/CreateDishRating", consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> createRating(@RequestBody CreateRatingPojo creatingRatingPojo) {
         try {
-            ratingService.createMealRating(creatingRatingPojo);
+            ratingService.createDishRating(creatingRatingPojo);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
