@@ -50,7 +50,7 @@ CREATE TABLE reservations (
     id SERIAL PRIMARY KEY,
     availability_id INT NOT NULL,
     user_id INT NOT NULL,
-    timestamp TIMESTAMP NOT NULL,
+    timestamp TIMESTAMP NOT NULL
 );
 
 DROP TABLE IF EXISTS dishes;
