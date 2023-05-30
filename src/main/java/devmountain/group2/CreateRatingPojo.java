@@ -14,7 +14,7 @@ public class CreateRatingPojo {
 
     private String password;
 
-    private Long mealId;
+    private Long dishId;
 
     private int rating;
 }
