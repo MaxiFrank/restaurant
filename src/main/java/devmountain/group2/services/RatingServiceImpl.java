@@ -1,5 +1,9 @@
-package devmountain.group2;
+package devmountain.group2.services;
 
+import devmountain.group2.dtos.CreateRatingPojo;
+import devmountain.group2.entities.RatingEntity;
+import devmountain.group2.repositories.RatingRepository;
+import devmountain.group2.services.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

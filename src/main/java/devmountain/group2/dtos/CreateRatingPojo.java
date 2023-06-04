@@ -1,4 +1,4 @@
-package devmountain.group2;
+package devmountain.group2.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -9,10 +9,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CreateReviewPojo {
-    private String password;
-
+public class CreateRatingPojo {
     private String username;
 
-    private String reviewContent;
+    private String password;
+
+    private Long dishId;
+
+    private int rating;
 }

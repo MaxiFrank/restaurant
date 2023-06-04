@@ -1,5 +1,7 @@
-package devmountain.group2;
+package devmountain.group2.controllers;
 
+import devmountain.group2.services.RatingServiceImpl;
+import devmountain.group2.dtos.CreateRatingPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
