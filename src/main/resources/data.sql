@@ -1,0 +1,22 @@
+INSERT INTO dishes (name, description, price) VALUES
+('ANTIPASTO MISTO', 'Grilled Eggplant, Zucchini, Salumi, Olives, Fior di Latte Mozzarella', 24.0),
+('SUPPLI NAPOLETANA' , 'Fried Arborio Risotto Balls (3), Stuffed w/ Mozzarella, Served w/ Garlic-Aioli', 14.0),
+('BURATA', 'Handmade Mozzarella w/ Marinated Olives, Greens, Frontoia Sicilian EVOO', 14.0),
+('VEAL BONE MARROW', 'Roasted Veal Marrow, Parsley Caper Salad, Grilled Garlic Bread', 14.0),
+('MENESTRA E’ VERDURE', 'Lentil Vegetable Minestrone, Garlic Croutons, Grana Padano', 18.0),
+('POLENTA DI BELLA', 'Baked Polenta, Gorgonzola, Sauteed Crimini Mushrooms', 14.0),
+('BIGOLI AL SUGO D.O.P.','Thick Spaghetti, Cherry Tomatoes, Basil, San Marzano D.O.P. Sugo', 21.0),
+('CARBONARA SBAGLIATA', 'Fettuccine, Pancetta, Pecorino, Egg Sugo',24.0),
+('CARBONARA','Fettuccine w/ sautéed butternut squash, sliced Brussels sprouts, Pecorino Romano, tossed w/ Farm Egg Sugo & topped w/ crispy brussels sprouts & drizzled with Giusti 18 year old balsamic vinegar', 24.0),
+('AMATRICIANA', 'Maccarune, Guanciale (Pork Jowl), Pecorino, San Marzano D.O.P. Tomato Sugo',24.0),
+('PAPPARDELLE SPINACI CON BURRO' ,'Flat Ribbon Spinach Pasta, Pork Sausage, Tartufata, Butter Sugo. Topped with breadcrumbs', 24.0),
+('GNOCCHI DI SPINACI CON GORGONZOLA','Potato-Spinach Gnocchi Gorgonzola Bechamel, Crimini Mushrooms. & Tartuffata', 21.0),
+('SORRENTINA','Potato Gnocchi, Italian Sausage, Tomato Sugo, Fresh Mozzarella',24.0),
+('LA PARMIGIANA','Grilled Eggplant, Fior di Latte Mozzarella, San Marzano Tomato Sugo, Sauteed Spinach',24.0),
+('ZUPPA DI PESCE','Seafood Food Stew, North Coast Black Mussels, Manila Clams, Prawns, Scallops, Chopped Eggplant & Zucchini, San Marzano Tomato Sugo',42.0),
+('MARINARA','San Marzano Tomato Sugo, Kalamata Olives, Anchovies & Oregano (no cheese)',18.0),
+('MARGHERITA','Fior di Latte Mozzarella, San Marzano Tomato Sugo, Basil',19.0),
+('TIRAMISU','Lady Fingers dipped in espresso with Kahlua and Layered w/ Marscapone',10.0),
+('PANNA COTTA','Cooked cream, strawberrry compote, Balsamic Glaze.',9.0),
+('AFFOGATO','Vanilla Ice Cream, Drowned with Espresso & Amaretti Crumble *crumble contains nuts',10.0);
+
