@@ -12,10 +12,9 @@
  */
 
 .flexbox {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
 }
 
 .menu-section>h3 {
@@ -29,7 +28,27 @@
 }
 
 .menu-item-card {
-  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+}
+
+.menu-item-card>* {
+  flex: 1;
+}
+
+.menu-item-card>.card-header {
+  min-height: 60px;
+  word-wrap: break-word;
+
+}
+
+.menu-item-card>.card-body {
+  min-height: fit-content;
+}
+
+.menu-item-card>.card-footer {
+  min-height: 60px;
 }
 
 :root {

@@ -28,11 +28,12 @@ const dummyData = [
         price: 14.0
     },
 ]
-console.log( dummyData )
-function loadMenuItems ()
+async function loadMenuItems ()
 {
+    const response = await fetch( 'http://localhost:8080/dish/' ).then( response => response.json() )
+    console.log( response )
     const menuItemsList = document.body.querySelector( '#menu-items' )
-    for ( const element of dummyData )
+    for ( const element of response )
     {
         let htmlContent = `
         <div class="card menu-item-card h-100">
