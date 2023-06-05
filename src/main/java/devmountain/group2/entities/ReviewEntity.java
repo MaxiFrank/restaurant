@@ -1,5 +1,6 @@
 package devmountain.group2.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,9 @@ public class ReviewEntity {
 
     private String reviewContent;
 
-    private Long reviewerId; //TODO need to update foreign key once user entity done
+    private int rating;
+
+    @ManyToOne
+    @JsonBackReference
+    private UserEntity user;
 }

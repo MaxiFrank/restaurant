@@ -1,5 +1,7 @@
 package devmountain.group2.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,11 +13,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class RatingEntity {
+    //this entity is for individual dish ratings mapped by the user who rated it
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     private int rating;
-    private Long dishId; //TODO need to update to add foreign key here once dish entity done
-    private Long reviewerUserId; //TODO need to update foreign key once user entity done
+    @ManyToOne
+    @JsonBackReference
+    private DishEntity dish;
+    @ManyToOne
+    @JsonBackReference
+    private UserEntity user;
 }

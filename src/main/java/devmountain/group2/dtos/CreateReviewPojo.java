@@ -15,4 +15,6 @@ public class CreateReviewPojo {
     private String username;
 
     private String reviewContent;
+
+    private int rating;
 }
