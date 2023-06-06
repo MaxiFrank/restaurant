@@ -1,23 +1,13 @@
-package devmountain.group2.entities;
+package devmountain.group2.dtos;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "availability")
-public class AvailabilityEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+public class GetAvailabilityDto {
     private Long id;
-
-    @Column(name = "table_id")
     private int tableId;
 
-    @Column(name = "capacity")
     private int capacity;
 
-    @Column(name = "time_slot")
     private String timeSlot;
+    private boolean isAvailable;
 
     public Long getId() {
         return id;
@@ -49,5 +39,13 @@ public class AvailabilityEntity {
 
     public void setTimeSlot(String timeSlot) {
         this.timeSlot = timeSlot;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 }

@@ -6,8 +6,69 @@
 //
 // Scripts
 //
+initAvailabilitySelect = (availability) => {
+    const partySizeSelect = document.getElementById("partySizeSelect");
+    const timeSelect = document.getElementById("timeSelect");
+    timeSelect.disabled = true;
+
+    const capacities = availability.map(function(item) {
+        return item.capacity;
+    });
+    const uniqueCapacities = Array.from(new Set(capacities));
+
+    for (let i = 0; i < uniqueCapacities.length; i++) {
+        const option = document.createElement("option");
+        option.value = uniqueCapacities[i];
+        option.text = uniqueCapacities[i];
+        partySizeSelect.appendChild(option);
+    }
+
+    partySizeSelect.addEventListener("change", function(event) {
+        const selectedOption = partySizeSelect.options[partySizeSelect.selectedIndex];
+        // Enable and update time select with available times for party size
+        const timeOptionsForSelectedCapacity = availability.filter(function(item) {
+            return item.capacity == selectedOption.value;
+        });
+
+        for (let i = 0; i < timeOptionsForSelectedCapacity.length; i++) {
+            const option = document.createElement("option");
+            option.value = availability[i];
+            option.text = availability[i].timeSlot;
+            timeSelect.appendChild(option);
+        }
+        timeSelect.disabled = false;
+    });
+}
+
+fetchAvailability = () => {
+    console.log("Fetching availability");
+    fetch('http://localhost:8080/availability/', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            initAvailabilitySelect(data);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
+}
+
+createReservation = () => {
+
+}
 
 window.addEventListener('DOMContentLoaded', event => {
+    fetchAvailability();
 
     // Navbar shrink function
     var navbarShrink = function () {
