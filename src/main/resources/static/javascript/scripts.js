@@ -37,6 +37,9 @@ initAvailabilitySelect = (availability) => {
     });
     const uniqueCapacities = Array.from(new Set(capacities));
 
+    partySizeSelect.innerHTML = "";
+    const option = document.createElement("option");
+    partySizeSelect.appendChild(option);
     for (let i = 0; i < uniqueCapacities.length; i++) {
         const option = document.createElement("option");
         option.value = uniqueCapacities[i];
@@ -93,11 +96,23 @@ initAvailabilitySelect = (availability) => {
     });
 }
 
+function getCurrentDateStringDatepickerFormat() {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+}
+
 fetchAvailability = () => {
     const date = document.getElementById("datePicker").value;
     let currentHour = new Date().getHours().toString().padStart(2, '0');
     let currentMinute = new Date().getMinutes().toString().padStart(2, '0');
-    const afterTime = `${currentHour}:${currentMinute}`; // TODO: set this to 00:00 if date is not today
+    let afterTime = `${currentHour}:${currentMinute}`;
+    if (date != getCurrentDateStringDatepickerFormat()) {
+        afterTime = "00:00";
+    }
     const url = `http://localhost:8080/availability/?date=${date}&afterTime=${afterTime}`;
 
     fetch(url, {
@@ -169,11 +184,20 @@ function listenForBookingSubmit() {
 }
 
 function resetReservationForm() {
-    // TODO reload page for simplicity
+    initDatepickerToToday();
+    fetchAvailability();
+}
+
+function listenForDatepickerChange() {
+    const datePicker = document.getElementById("datePicker");
+    datePicker.addEventListener("change", function(event) {
+        fetchAvailability();
+    });
 }
 
 function initializeReservationForm() {
     initDatepickerToToday();
+    listenForDatepickerChange();
     fetchAvailability();
     listenForBookingSubmit();
 }
