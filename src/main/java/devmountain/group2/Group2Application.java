@@ -21,7 +21,7 @@ public class Group2Application {
 				registry.addMapping("/availability/").allowedOrigins("*")
 						.allowedMethods("GET", "HEAD", "OPTIONS")
 						.allowedHeaders("*");
-				registry.addMapping("/reservation").allowedOrigins("*")
+				registry.addMapping("/reservation/create").allowedOrigins("*")
 						.allowedMethods("POST", "HEAD", "OPTIONS")
 						.allowedHeaders("*");
 			}

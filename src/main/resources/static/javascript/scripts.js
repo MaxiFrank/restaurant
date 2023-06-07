@@ -6,10 +6,31 @@
 //
 // Scripts
 //
+function formatTimeRangeToStartTimeOnly(timeRange) {
+    // Split the range and get the first part
+    let startTime24 = timeRange.split("-")[0];
+
+    // Create a Date object at today's date and the given time
+    let date = new Date(`1970-01-01T${startTime24}:00`);
+
+    // Format the time in 12-hour format with AM/PM
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    let strTime = hours + ':' + minutes + ' ' + ampm;
+
+    return strTime;
+}
+
 initAvailabilitySelect = (availability) => {
     const partySizeSelect = document.getElementById("partySizeSelect");
     const timeSelect = document.getElementById("timeSelect");
-    timeSelect.disabled = true;
+    timeSelect.hidden = true;
+    const bookReservationButton = document.getElementById('bookReservationButton');
+    bookReservationButton.disabled = true;
 
     const capacities = availability.map(function(item) {
         return item.capacity;
@@ -19,7 +40,7 @@ initAvailabilitySelect = (availability) => {
     for (let i = 0; i < uniqueCapacities.length; i++) {
         const option = document.createElement("option");
         option.value = uniqueCapacities[i];
-        option.text = uniqueCapacities[i];
+        option.text = uniqueCapacities[i] + " people";
         partySizeSelect.appendChild(option);
     }
 
@@ -30,19 +51,56 @@ initAvailabilitySelect = (availability) => {
             return item.capacity == selectedOption.value;
         });
 
-        for (let i = 0; i < timeOptionsForSelectedCapacity.length; i++) {
-            const option = document.createElement("option");
-            option.value = availability[i];
-            option.text = availability[i].timeSlot;
-            timeSelect.appendChild(option);
+        // Only need to display one unique time per table size
+        const uniqueValues = {};
+        const uniqueTimeOptionsForSelectedCapacity = timeOptionsForSelectedCapacity.filter(function(item) {
+            if (!uniqueValues[item.timeSlot]) {
+                uniqueValues[item.timeSlot] = true;
+                return true;
+            }
+            return false;
+        });
+
+        // Clean up nodes
+        timeSelect.innerHTML = "";
+        document.getElementById("timeSelectLabel").hidden = false;
+
+        // Add new nodes to time chip select
+        for (let i = 0; i < uniqueTimeOptionsForSelectedCapacity.length; i++) {
+            const input = document.createElement("input");
+            const label = document.createElement("label");
+
+            input.type = "radio";
+            input.id = "option" + (i+1);
+            input.name = "chip";
+            input.value = uniqueTimeOptionsForSelectedCapacity[i].id;
+
+            label.htmlFor = input.id;
+            label.textContent =  formatTimeRangeToStartTimeOnly(uniqueTimeOptionsForSelectedCapacity[i].timeSlot);
+
+            timeSelect.appendChild(input);
+            timeSelect.appendChild(label);
         }
-        timeSelect.disabled = false;
+
+        timeSelect.hidden = false;
+
+        const radioInputs = document.querySelectorAll('input[name="chip"]');
+        radioInputs.forEach((input) => {
+            input.addEventListener('change', () => {
+                bookReservationButton.disabled = false;
+            });
+        });
     });
 }
 
 fetchAvailability = () => {
-    console.log("Fetching availability");
-    fetch('http://localhost:8080/availability/', {
+    const date = document.getElementById("datePicker").value;
+    let currentHour = new Date().getHours().toString().padStart(2, '0');
+    let currentMinute = new Date().getMinutes().toString().padStart(2, '0');
+    const afterTime = `${currentHour}:${currentMinute}`; // TODO: set this to 00:00 if date is not today
+    const url = `http://localhost:8080/availability/?date=${date}&afterTime=${afterTime}`;
+
+    fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -63,12 +121,65 @@ fetchAvailability = () => {
         });
 }
 
-createReservation = () => {
+function initDatepickerToToday() {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
 
+    const todayString = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("datePicker").value = todayString;
+}
+
+function listenForBookingSubmit() {
+    const bookReservationButton = document.getElementById('bookReservationButton');
+    bookReservationButton.addEventListener('click', () => {
+        const selectedAvailabilityId = document.querySelector('input[name="chip"]:checked').value;
+        const selectedDate = document.getElementById("datePicker").value;
+        console.log(selectedAvailabilityId);
+
+        const url = `http://localhost:8080/reservation/create`;
+        const data = {
+            availabilityId: selectedAvailabilityId,
+            date: selectedDate
+        }
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                alert("Reservation booked!");
+                resetReservationForm();
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
+    });
+}
+
+function resetReservationForm() {
+    // TODO reload page for simplicity
+}
+
+function initializeReservationForm() {
+    initDatepickerToToday();
+    fetchAvailability();
+    listenForBookingSubmit();
 }
 
 window.addEventListener('DOMContentLoaded', event => {
-    fetchAvailability();
+    initializeReservationForm();
 
     // Navbar shrink function
     var navbarShrink = function () {

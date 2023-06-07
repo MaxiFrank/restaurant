@@ -7,7 +7,9 @@ public class GetAvailabilityDto {
     private int capacity;
 
     private String timeSlot;
-    private boolean isAvailable;
+    private boolean hasReservation;
+
+    private boolean hasConflict;
 
     public Long getId() {
         return id;
@@ -41,11 +43,19 @@ public class GetAvailabilityDto {
         this.timeSlot = timeSlot;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public boolean getHasReservation() {
+        return hasReservation;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setHasReservation(boolean hasReservation) {
+        this.hasReservation = hasReservation;
+    }
+
+    public boolean getHasConflict() {
+        return this.hasConflict;
+    }
+
+    public void setHasConflict(boolean hasConflict) {
+        this.hasConflict = hasConflict;
     }
 }

@@ -2,8 +2,10 @@ package devmountain.group2.entities;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 @Entity
-@Table(name = "reservation")
+@Table(name = "reservations")
 public class ReservationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +19,7 @@ public class ReservationEntity {
     private Long userId;
 
     @Column(name = "timestamp")
-    private String timestamp;
+    private Timestamp timestamp;
 
     public Long getId() {
         return id;
@@ -43,11 +45,11 @@ public class ReservationEntity {
         this.userId = userId;
     }
 
-    public String getTimestamp() {
+    public Timestamp getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
 }
