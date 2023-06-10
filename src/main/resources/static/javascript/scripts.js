@@ -322,7 +322,7 @@ function register(){
     registerForm.addEventListener("submit", handleSubmit)
 }
 
-//need to set up a way to clearCookies when I click on logout
+
 function clearCookies(){
     document.cookie = "username=; max-age=-1; path=/;";
     document.cookie = "password=; max-age=-1; path=/;";
