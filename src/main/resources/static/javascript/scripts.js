@@ -246,7 +246,6 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
     });
-
 });
 
 function login(){
