@@ -246,5 +246,87 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
     });
-
 });
+
+function login(){
+    let loginForm = document.getElementById('loginForm')
+    let username = document.getElementById('loginEmailAddress')
+    let password = document.getElementById('loginPassword')
+
+    const headers = {
+        'Content-Type':'application/json'
+    }
+
+    const baseUrl = 'http://localhost:8080/user/login'
+
+    const handleSubmit = async (e) =>{
+        e.preventDefault()
+
+        let bodyObj = {
+            username: username.value,
+            password: password.value
+        }
+
+        const response = await fetch(`${baseUrl}`, {
+            method: "POST",
+            body: JSON.stringify(bodyObj),
+            headers: headers
+        })
+            .catch(err => console.error(err.message))
+
+        const responseArr = await response.json()
+
+        if (response.status === 200){
+            document.cookie = `username=${responseArr[2]}`
+            document.cookie = `password=${responseArr[3]}`
+            window.location.reload();
+            window.location.assign(responseArr[0])
+        }
+    }
+    loginForm.addEventListener("submit", handleSubmit)
+}
+
+function register(){
+    let registerForm = document.getElementById('registerForm');
+    let username = document.getElementById('emailAddress');
+    let password = document.getElementById('password');
+
+    const headers = {
+        'Content-Type':'application/json'
+    }
+
+    const baseUrl = 'http://localhost:8080/user/register';
+
+
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+
+    let bodyObj = {
+        username: username.value,
+        password: password.value
+    }
+
+    const response = await fetch(`${baseUrl}`, {
+        method: "POST",
+        body: JSON.stringify(bodyObj),
+        headers: headers
+    })
+        .catch(err => console.error(err.message))
+
+    const responseArr = await response.json()
+
+    if (response.status === 200){
+        window.location.replace(responseArr[0])
+    }}
+    registerForm.addEventListener("submit", handleSubmit)
+}
+
+
+function clearCookies(){
+    document.cookie = "username=; max-age=-1; path=/;";
+    document.cookie = "password=; max-age=-1; path=/;";
+    window.location.reload();
+}
+
+register();
+login();

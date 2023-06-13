@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
         List<String> response = new ArrayList<>();
         UserEntity user = new UserEntity(userDto);
         userRepository.saveAndFlush(user);
-        response.add("You have successfully registered");
+        response.add("/#signin");
         return response;
     }
 
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public List<String> userLogin(UserDto userDto) {
         List<String> response = new ArrayList<>();
-        response.add("/index.html");
+        response.add("/#reserve");
         Optional<UserEntity> userOptional = userRepository.findByUsername(userDto.getUsername());
         if (userOptional.isPresent()) {
             if (passwordEncoder.matches(userDto.getPassword(), userOptional.get().getPassword())) {
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public List<String> userLogout(UserDto userDto) {
         List<String> response = new ArrayList<>();
-        response.add("/index.html");
+        response.add("/");
         Optional<UserEntity> userOptional = userRepository.findByUsername(userDto.getUsername());
         if (userOptional.isPresent()) {
             response.add("you've logged out");
