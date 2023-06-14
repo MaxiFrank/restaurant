@@ -24,7 +24,7 @@ public class UserEntity {
     @Column(unique = true)
     private String password;
 
-// need to implement one to many with availability table
+// TODO do we need to implement one to many with reservation entity?
 
     public UserEntity(UserDto userDto) {
         if (userDto.getUsername() != null) {
