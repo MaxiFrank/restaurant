@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -10,36 +11,43 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/main.css" rel="stylesheet" />
     </head>
+
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <script type="text/javascript" id="user">
-                        if (document.cookie){
-                            let node = document.getElementById("user");
-                            let htmlInsert = '<li class="nav-item"><a class="nav-link" href="#about">Menu</a></li>'+
-                                              '<li class="nav-item"><a class="nav-link" href="#reserve">Reserve</a></li>';
-                            htmlInsert = htmlInsert + '<div class="row-auto mt-2"><button class="btn btn-primary" id="submitButton" onclick="clearCookies();" type="submit">Logout</button></div>';
-                            node.insertAdjacentHTML('afterend', htmlInsert);
-                        } else {
-                            let node = document.getElementById("user");
-                            let htmlInsert = '<li class="nav-item"><a class="nav-link" href="#about">Menu</a></li>' +
-                                                '<li class="nav-item"><a class="nav-link" href="#reserve">Reserve</a></li>';
-                            htmlInsert = htmlInsert + '<li class="nav-item"><a class="nav-link" href="#signup">Register</a></li>'
-                                                       + '<li class="nav-item"><a class="nav-link" href="#login">Login</a></li>';
-                            node.insertAdjacentHTML('afterend', htmlInsert);
-                        }
+                            if ( document.cookie )
+                            {
+                                let node = document.getElementById( "user" )
+                                let htmlInsert = '<li class="nav-item"><a class="nav-link" href="#about">Menu</a></li>' +
+                                    '<li class="nav-item"><a class="nav-link" href="#reserve">Reserve</a></li>'
+                                htmlInsert = htmlInsert + '<div class="row-auto mt-2"><button class="btn btn-primary" id="submitButton" onclick="clearCookies();" type="submit">Logout</button></div>'
+                                node.insertAdjacentHTML( 'afterend', htmlInsert )
+                            } else
+                            {
+                                let node = document.getElementById( "user" )
+                                let htmlInsert = '<li class="nav-item"><a class="nav-link" href="#about">Menu</a></li>' +
+                                    '<li class="nav-item"><a class="nav-link" href="#reserve">Reserve</a></li>'
+                                htmlInsert = htmlInsert + '<li class="nav-item"><a class="nav-link" href="#signup">Register</a></li>'
+                                    + '<li class="nav-item"><a class="nav-link" href="#login">Login</a></li>'
+                                node.insertAdjacentHTML( 'afterend', htmlInsert )
+                            }
                         </script>
 
 
@@ -61,7 +69,8 @@
                     <div class="col-lg-8">
                         <h2 class="text-white mb-4">Built with Bootstrap 5</h2>
                         <p class="text-white-50">
-                            Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
+                            Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now,
+                            simply download the template on
                             <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
                             The theme is open source, and you can use it for any purpose, personal or commercial.
                         </p>
@@ -81,24 +90,30 @@
                         <label class="text-black" for="datePicker">Select a date:</label>
                         <input class="form-control" type="date" id="datePicker">
                     </div>
-                    <br/>
+                    <br />
                     <div>
                         <label class="text-black" for="partySizeSelect">Select a table size:</label>
                         <select class="form-control" id="partySizeSelect">
                             <option></option>
                         </select>
                     </div>
-                    <br/>
+                    <br />
                     <label id="timeSelectLabel" class="text-black" for="partySizeSelect" hidden>Select a time:</label>
                     <div id="timeSelect" class="text-black">
                     </div>
-                    <br/>
+                    <br />
                     <button id="bookReservationButton" type="button" class="btn btn-primary">Book</button>
                 </form>
             </div>
         </section>
         <!--/ Book a Reservation -->
 
+        <section class="menu-section">
+            <h3>Menu Items</h3>
+            <div class=" flexbox menu-container" id="menu-items">
+
+            </div>
+        </section>
         <!-- Signup-->
         <section class="signup-section" id="signup">
             <div class="container px-4 px-lg-5">
@@ -115,13 +130,16 @@
                         <form class="form-signup" id="registerForm" data-sb-form-api-token="API_TOKEN">
                             <!-- Email address input-->
                             <div class="row input-group-newsletter">
-                                <div class="row mt-2"><input class="form-control" id="emailAddress" type="email" placeholder="Enter email address..." aria-label="Enter email address..." data-sb-validations="required,email" /></div>
-                                <div class="row mt-2"><input class="form-control" id="password" type="password" placeholder="Enter password..." aria-label="Enter password..." data-sb-validations="required,password" /></div>
-                                <div class="row-auto mt-2"><button class="btn btn-primary" id="submitButton" onclick="location.href='#login';" type="submit">Register</button></div>
+                                <div class="row mt-2"><input class="form-control" id="emailAddress" type="email"
+                                        placeholder="Enter email address..." aria-label="Enter email address..."
+                                        data-sb-validations="required,email" /></div>
+                                <div class="row mt-2"><input class="form-control" id="password" type="password"
+                                        placeholder="Enter password..." aria-label="Enter password..."
+                                        data-sb-validations="required,password" /></div>
+                                <div class="row-auto mt-2"><button class="btn btn-primary" id="submitButton"
+                                        onclick="location.href='#login';" type="submit">Register</button></div>
 
                             </div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
                             <!-- Submit success message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
@@ -131,14 +149,17 @@
                                     <div class="fw-bolder">Form submission successful!</div>
                                     To activate this form, sign up at
                                     <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                    <a
+                                        href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                                 </div>
                             </div>
                             <!-- Submit error message-->
                             <!---->
                             <!-- This is what your users will see when there is-->
                             <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3 mt-2">Error sending message!</div></div>
+                            <div class="d-none" id="submitErrorMessage">
+                                <div class="text-center text-danger mb-3 mt-2">Error sending message!</div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -161,12 +182,19 @@
                         <form class="form-login" id="loginForm" data-sb-form-api-token="API_TOKEN">
                             <!-- Email address input-->
                             <div class="row input-group-newsletter">
-                                <div class="row mt-2"><input class="form-control" id="loginEmailAddress" type="email" placeholder="Enter email address..." aria-label="Enter email address..." data-sb-validations="required,email" /></div>
-                                <div class="row mt-2"><input class="form-control" id="loginPassword" type="password" placeholder="Enter password..." aria-label="Enter password..." data-sb-validations="required,password" /></div>
-                                <div class="row-auto mt-2"><button class="btn btn-primary" id="loginSubmitButton" type="submit">Log in</button></div>
+                                <div class="row mt-2"><input class="form-control" id="loginEmailAddress" type="email"
+                                        placeholder="Enter email address..." aria-label="Enter email address..."
+                                        data-sb-validations="required,email" /></div>
+                                <div class="row mt-2"><input class="form-control" id="loginPassword" type="password"
+                                        placeholder="Enter password..." aria-label="Enter password..."
+                                        data-sb-validations="required,password" /></div>
+                                <div class="row-auto mt-2"><button class="btn btn-primary" id="loginSubmitButton"
+                                        type="submit">Log in</button></div>
                             </div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
+                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is
+                                required.</div>
+                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.
+                            </div>
                             <!-- Submit success message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
@@ -176,14 +204,17 @@
                                     <div class="fw-bolder">Form submission successful!</div>
                                     To activate this form, sign up at
                                     <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                    <a
+                                        href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                                 </div>
                             </div>
                             <!-- Submit error message-->
                             <!---->
                             <!-- This is what your users will see when there is-->
                             <!-- an error submitting the form-->
-                            <div class="d-none" id="loginSubmitErrorMessage"><div class="text-center text-danger mb-3 mt-2">Error sending message!</div></div>
+                            <div class="d-none" id="loginSubmitErrorMessage">
+                                <div class="text-center text-danger mb-3 mt-2">Error sending message!</div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -191,7 +222,9 @@
         </section>
 
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div></footer>
+        <footer class="footer bg-black small text-center text-white-50">
+            <div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div>
+        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
@@ -202,4 +235,5 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
+
 </html>

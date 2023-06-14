@@ -1,9 +1,8 @@
 package devmountain.group2;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -15,6 +14,7 @@ public class SecurityConfig {
                         .anyRequest().permitAll()
                 )
                 .csrf().disable();
+        http.headers().frameOptions().disable();
         return http.build();
     }
 }
