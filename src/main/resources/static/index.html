@@ -35,14 +35,14 @@
                             if ( document.cookie )
                             {
                                 let node = document.getElementById( "user" )
-                                let htmlInsert = '<li class="nav-item"><a class="nav-link" href="#about">Menu</a></li>' +
+                                let htmlInsert = '<li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>' +
                                     '<li class="nav-item"><a class="nav-link" href="#reserve">Reserve</a></li>'
                                 htmlInsert = htmlInsert + '<div class="row-auto mt-2"><button class="btn btn-primary" id="submitButton" onclick="clearCookies();" type="submit">Logout</button></div>'
                                 node.insertAdjacentHTML( 'afterend', htmlInsert )
                             } else
                             {
                                 let node = document.getElementById( "user" )
-                                let htmlInsert = '<li class="nav-item"><a class="nav-link" href="#about">Menu</a></li>' +
+                                let htmlInsert = '<li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>' +
                                     '<li class="nav-item"><a class="nav-link" href="#reserve">Reserve</a></li>'
                                 htmlInsert = htmlInsert + '<li class="nav-item"><a class="nav-link" href="#signup">Register</a></li>'
                                     + '<li class="nav-item"><a class="nav-link" href="#login">Login</a></li>'
@@ -63,23 +63,13 @@
             </div>
         </header>
         <!-- About-->
-        <section class="about-section text-center" id="about">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8">
-                        <h2 class="text-white mb-4">Built with Bootstrap 5</h2>
-                        <p class="text-white-50">
-                            Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now,
-                            simply download the template on
-                            <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
-                            The theme is open source, and you can use it for any purpose, personal or commercial.
-                        </p>
-                    </div>
-                </div>
-                <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
+        <!-- Projects-->
+
+        <section class="menu-section" id="menu">
+            <h3 style="margin-top: 40px; margin-bottom: 40px;">Menu</h3>
+            <div class=" flexbox menu-container" id="menu-items" style="margin-bottom: 64px;">
             </div>
         </section>
-        <!-- Projects-->
 
         <!-- Book a Reservation -->
         <section class="bg-light" id="reserve">
@@ -108,12 +98,6 @@
         </section>
         <!--/ Book a Reservation -->
 
-        <section class="menu-section">
-            <h3>Menu Items</h3>
-            <div class=" flexbox menu-container" id="menu-items">
-
-            </div>
-        </section>
         <!-- Signup-->
         <section class="signup-section" id="signup">
             <div class="container px-4 px-lg-5">

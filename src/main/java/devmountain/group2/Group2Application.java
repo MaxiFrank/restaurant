@@ -18,6 +18,9 @@ public class Group2Application {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/dish/").allowedOrigins("*")
+						.allowedMethods("GET", "HEAD", "OPTIONS")
+						.allowedHeaders("*");
 				registry.addMapping("/availability/").allowedOrigins("*")
 						.allowedMethods("GET", "HEAD", "OPTIONS")
 						.allowedHeaders("*");

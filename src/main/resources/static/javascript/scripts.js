@@ -30,7 +30,12 @@ const dummyData = [
 ]
 async function loadMenuItems ()
 {
-    const response = await fetch( 'http://localhost:8080/dish/' ).then( response => response.json() )
+    const response = await fetch( 'http://localhost:8080/dish/',{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    } ).then( response => response.json() )
     console.log( response )
     const menuItemsList = document.body.querySelector( '#menu-items' )
     for ( const element of response )
@@ -209,6 +214,27 @@ function initDatepickerToToday ()
     document.getElementById( "datePicker" ).value = todayString
 }
 
+function initDatepickerMinAndMax ()
+{
+    const datePicker = document.getElementById('datePicker');
+
+    const date = new Date();
+    const minDate = formatDate(date);
+    date.setMonth(date.getMonth() + 1);
+    const maxDate = formatDate(date);
+
+    datePicker.min = minDate;
+    datePicker.max = maxDate;
+}
+
+function formatDate(date)
+{
+    const day = ('0' + date.getDate()).slice(-2);
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const year = date.getFullYear();
+    return year + '-' + month + '-' + day;
+}
+
 function listenForBookingSubmit ()
 {
     const bookReservationButton = document.getElementById( 'bookReservationButton' )
@@ -254,6 +280,7 @@ function listenForBookingSubmit ()
 
 function resetReservationForm ()
 {
+    initDatepickerMinAndMax()
     initDatepickerToToday()
     fetchAvailability()
 }
